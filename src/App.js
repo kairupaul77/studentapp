@@ -1,38 +1,22 @@
-import React, { useState }  from 'react';
-import './App.css';
-import Home from './pages/Home';
+// src/App.js
+import React, { useState } from 'react';
+import Home from "../src/pages/Home"
 
-
-
-function App() {
-
-  const [Student , setStudent] = useState([
-    {id:1 , name:"Alice Johnson" , age:20 , course:"Mathematics" , image:"" } ,
-
-    {id:2 , name:"Bob Smith" , age:22 , course:"Science" , image:"" } ,
-
-    {id:3 , name:"Charlie Brown" , age:21 , course:"Literature" , image:" " } ,
-
-    {id:4 , name:"Diana Prince" , age:23 , course:"History" , image:"" } ,
-
-    {id:5 , name:"Ethan Hunt" , age:20 , course:"Engineering" , image:"" } ,
-
-    {id:6 , name:"Fiona Gallagher" , age:22 , course:"Art" , image:"" }
-  ])
-
+const App = () => {
+  const [students] = useState([
+    { id: 1, name: "Alice Johnson", age: 20, course: "Mathematics", image: "https://randomuser.me/api/portraits/women/68.jpg" },
+    { id: 2, name: "Bob Smith", age: 22, course: "Science", image: "https://randomuser.me/api/portraits/men/15.jpg" },
+    { id: 3, name: "Charlie Brown", age: 21, course: "Literature", image: "https://randomuser.me/api/portraits/men/31.jpg" },
+    { id: 4, name: "Diana Prince", age: 23, course: "History", image: "https://randomuser.me/api/portraits/women/52.jpg" },
+    { id: 5, name: "Ethan Hunt", age: 20, course: "Engineering", image: "https://randomuser.me/api/portraits/men/33.jpg" },
+    { id: 6, name: "Fiona Gallagher", age: 22, course: "Art", image: "https://randomuser.me/api/portraits/women/79.jpg" }
+  ]);
 
   return (
-    <div className="App  container mt-5">
-        
-      <h1 className="text-center mb-4">Student List</h1>
-      <Home student={Student} />
-      
-   
-
-
+    <div className="App">
+      <Home students={students} /> {/* Pass students as props */}
     </div>
-   
   );
-}
+};
 
 export default App;
