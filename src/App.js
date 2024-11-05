@@ -1,22 +1,23 @@
-// src/App.js
-import React, { useState } from 'react';
-import Home from "../src/pages/Home"
+import React, { useEffect, useState } from "react";
+import Home from "./pages/Home";// Make sure this component exists
+import './App.css'; // Replace with the appropriate file if needed
 
-const App = () => {
-  const [students] = useState([
-    { id: 1, name: "Alice Johnson", age: 20, course: "Mathematics", image: "https://randomuser.me/api/portraits/women/68.jpg" },
-    { id: 2, name: "Bob Smith", age: 22, course: "Science", image: "https://randomuser.me/api/portraits/men/15.jpg" },
-    { id: 3, name: "Charlie Brown", age: 21, course: "Literature", image: "https://randomuser.me/api/portraits/men/31.jpg" },
-    { id: 4, name: "Diana Prince", age: 23, course: "History", image: "https://randomuser.me/api/portraits/women/52.jpg" },
-    { id: 5, name: "Ethan Hunt", age: 20, course: "Engineering", image: "https://randomuser.me/api/portraits/men/33.jpg" },
-    { id: 6, name: "Fiona Gallagher", age: 22, course: "Art", image: "https://randomuser.me/api/portraits/women/79.jpg" }
-  ]);
+function App() {
+  const [students, setStudents] = useState(null);
+
+  useEffect(() => {
+    fetch('http://localhost:3000/students')
+      .then(res => res.json())
+      .then(data => setStudents(data))
+      .catch(error => console.error("Error fetching students:", error));
+  }, []);
 
   return (
-    <div className="App">
-      <Home students={students} /> {/* Pass students as props */}
+    <div>
+      {/* Passing the state students to the Home component */}
+      {students ? <Home students={students} /> : <p>Loading students...</p>}
     </div>
   );
-};
+}
 
 export default App;
